@@ -1,20 +1,13 @@
+import { useState } from "react";
+import axios from "axios";
 import { api_key, api_domain } from "../Services/ApiData";
 import SearchIcon from "@mui/icons-material/Search";
-import { useState } from "react";
-
 import TextField from "@material-ui/core/TextField";
-import IconButton from "@material-ui/core/IconButton";
-import axios from "axios";
 import { SearchContainer, ButtonIconStyle } from "./SearchStyle";
 
-function Search({ onSearchResults }) {
-  const [searchText, setSearchText] = useState("");
-
+function Search({ onSearchResults, searchText, setSearchText }) {
   const handleSearchTextChange = (event) => {
     setSearchText(event.target.value);
-  };
-
-  const handleSearchButtonClick = () => {
     if (searchText) {
       axios
         .get(
@@ -34,7 +27,7 @@ function Search({ onSearchResults }) {
   };
 
   return (
-    <div className={SearchContainer}>
+    <div style={SearchContainer}>
       <TextField
         label="Search movies"
         variant="outlined"
@@ -42,9 +35,7 @@ function Search({ onSearchResults }) {
         onChange={handleSearchTextChange}
       />
       <div style={ButtonIconStyle}>
-        <IconButton onClick={handleSearchButtonClick}>
-          <SearchIcon />
-        </IconButton>
+        <SearchIcon />
       </div>
     </div>
   );

@@ -7,11 +7,13 @@ import Error from "../Error/Error";
 import Loading from "../Loading/Loading";
 import MovieCard from "../MovieCard/MovieCard";
 import MovieModal from "../Modal/MovieModel";
+
 const Movie = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     axios
@@ -30,19 +32,21 @@ const Movie = () => {
   return (
     <>
       <div>
-        <h1>🎥 My Movies App</h1>
-        {/* Search form */}
-        <form>
-          <Search
-            onSearchResults={(results) => setMovies(results)}
-            setMovies={setMovies}
-            movies={movies}
-          />
-        </form>
-        {/* Error message */}
-        <Error error={error} />
-        {/* Loading spinner */}
-        <Loading isLoading={isLoading} />
+      
+          <h1>🎥 My Movies App</h1>
+          {/* Search form */}
+          <form>
+            <Search
+              onSearchResults={(results) => setMovies(results)}
+              setSearchText={setSearchText}
+              searchText={searchText}
+            />
+          </form>
+          {/* Error message */}
+          <Error error={error} />
+          {/* Loading spinner */}
+          <Loading isLoading={isLoading} />
+       
         <hr></hr>
         <Grid container spacing={2}>
           {!isLoading &&

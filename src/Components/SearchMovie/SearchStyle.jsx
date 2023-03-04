@@ -1,11 +1,13 @@
 export const ButtonIconStyle = {
   position: "relative",
-  top: "-48px",
+  top: "18px",
   cursor: "pointer",
-  left: "170px",
+  left: "-30px",
 };
 export const SearchContainer = {
   display: "flex",
   position: "relative",
   padding: "10px",
+  left: "42%",
+  textAlign: "center",
 };
