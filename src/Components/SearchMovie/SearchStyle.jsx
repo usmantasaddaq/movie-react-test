@@ -8,6 +8,6 @@ export const SearchContainer = {
   display: "flex",
   position: "relative",
   padding: "10px",
-  left: "42%",
+
   textAlign: "center",
 };
