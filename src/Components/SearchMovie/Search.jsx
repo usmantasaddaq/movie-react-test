@@ -15,9 +15,13 @@ function Search({ onSearchResults, searchText, setSearchText }) {
         )
         .then((response) => {
           onSearchResults(
-            response.data.results.filter((e) =>
-              e.original_title.toLowerCase().includes(searchText)
-            )
+            response.data.results
+              .filter((e) =>
+                e.original_title.toLowerCase().includes(searchText)
+              )
+              .sort(
+                (a, b) => new Date(b.release_date) - new Date(a.release_date)
+              )
           );
         })
         .catch((error) => {
