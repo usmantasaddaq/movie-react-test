@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { api_key, api_domain } from "../Services/ApiData";
 import SearchIcon from "@mui/icons-material/Search";
@@ -39,6 +39,7 @@ function Search({ onSearchResults, searchText, setSearchText }) {
         onChange={handleSearchTextChange}
       />
       <div style={ButtonIconStyle}>
+        
         <SearchIcon />
       </div>
     </div>

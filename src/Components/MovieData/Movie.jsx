@@ -3,8 +3,6 @@ import axios from "axios";
 import { api_key, api_domain } from "../Services/ApiData";
 import Grid from "@mui/material/Grid";
 import Search from "../SearchMovie/Search";
-import Error from "../Error/Error";
-import Loading from "../Loading/Loading";
 import MovieCard from "../MovieCard/MovieCard";
 import MovieModal from "../Modal/MovieModel";
 
@@ -47,23 +45,14 @@ const Movie = () => {
             searchText={searchText}
           />
         </form>
-        {/* Error message */}
-        <Error error={error} />
-        {/* Loading spinner */}
-        <Loading isLoading={isLoading} />
 
         <hr></hr>
         <Grid container spacing={2}>
-          {!isLoading &&
-            !error &&
-            movies?.map((movie) => (
-              <Grid item xs={12} sm={6} md={4} key={movie.id}>
-                <MovieCard
-                  movie={movie}
-                  onClick={() => handleCardClick(movie)}
-                />
-              </Grid>
-            ))}
+          {movies?.map((movie) => (
+            <Grid item xs={12} sm={6} md={4} key={movie.id}>
+              <MovieCard movie={movie} onClick={() => handleCardClick(movie)} />
+            </Grid>
+          ))}
         </Grid>
         <MovieModal movie={selectedMovie} onClose={handleModalClose} />
       </div>
