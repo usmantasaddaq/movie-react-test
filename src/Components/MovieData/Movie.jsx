@@ -18,7 +18,13 @@ const Movie = () => {
   useEffect(() => {
     axios
       .get(`${api_domain}/discover/movie?api_key=${api_key}`)
-      .then((response) => setMovies(response.data.results))
+      .then((response) =>
+        setMovies(
+          response.data.results.sort(
+            (a, b) => new Date(b.release_date) - new Date(a.release_date)
+          )
+        )
+      )
       .catch((error) => console.log(error));
   }, []);
 
@@ -32,21 +38,20 @@ const Movie = () => {
   return (
     <>
       <div>
-      
-          <h1>🎥 My Movies App</h1>
-          {/* Search form */}
-          <form>
-            <Search
-              onSearchResults={(results) => setMovies(results)}
-              setSearchText={setSearchText}
-              searchText={searchText}
-            />
-          </form>
-          {/* Error message */}
-          <Error error={error} />
-          {/* Loading spinner */}
-          <Loading isLoading={isLoading} />
-       
+        <h1>🎥 My Movies App</h1>
+        {/* Search form */}
+        <form>
+          <Search
+            onSearchResults={(results) => setMovies(results)}
+            setSearchText={setSearchText}
+            searchText={searchText}
+          />
+        </form>
+        {/* Error message */}
+        <Error error={error} />
+        {/* Loading spinner */}
+        <Loading isLoading={isLoading} />
+
         <hr></hr>
         <Grid container spacing={2}>
           {!isLoading &&
